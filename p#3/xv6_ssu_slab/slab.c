@@ -22,14 +22,14 @@ bool get_bit(char *b, int i){
 void set_bit(char *b, int i){
 	int index = (i / 8);
 	int offset = (i % 8);
-	b += (index * 8);
+	b += index;
 	*b = *b | (1 << offset);
 }
 
 void clear_bit(char *b, int i){
 	int index = (i / 8);
 	int offset = (i % 8);
-	b += (index * 8);
+	b += index;
 	*b = *b & ~(1 << offset);
 }
 
