@@ -15,7 +15,7 @@ struct {
 bool get_bit(char *b, int i){
 	int index = (i / 8);
 	int offset = (i % 8);
-	b += (index * 8);
+	b += index;
 	return (*b & (1 << offset)) != 0;
 }
 
