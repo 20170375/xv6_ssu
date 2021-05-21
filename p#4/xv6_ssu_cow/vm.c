@@ -420,7 +420,6 @@ page_fault(void)
     return;
 
   pa = PTE_ADDR(*pte);
-  *pte |= PTE_W;
 
   // copy-on-write
   if (get_ref(pa) >= 2) {
@@ -431,6 +430,9 @@ page_fault(void)
 
     memmove(mem, (char*)P2V(pa), PGSIZE);
     *pte = V2P(mem) | PTE_P | PTE_W | PTE_U;
+  }
+  else {
+    *pte |= PTE_W;
   }
 
   lcr3(V2P(pgdir));
